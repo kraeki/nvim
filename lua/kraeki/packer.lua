@@ -24,6 +24,8 @@ return require('packer').startup(function(use)
 	use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use ('mbbill/undotree')
 	use ('tpope/vim-fugitive')
+
+    -- LSP 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
@@ -46,6 +48,40 @@ return require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'},
 		}
 	}
+    -- Have some formatters and linters
+    use "jose-elias-alvarez/null-ls.nvim"
+
+    -- Have tabs in nvim
+    use 'nvim-tree/nvim-web-devicons'
+    use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
+
+    -- Have support for keybindings (like experienced in emacs)
+    use {
+      "folke/which-key.nvim",
+      config = function()
+          vim.o.timeout = true
+          vim.o.timeoutlen = 500
+          require("which-key").setup { -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+
+    -- Have file tree
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+          'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      },
+      tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+
+    -- Have comments
+    use "terrortylor/nvim-comment"
+    require('nvim_comment').setup()
+
+
 end)
 
 
