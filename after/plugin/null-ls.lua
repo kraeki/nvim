@@ -6,3 +6,5 @@ local sources = {
     null_ls.builtins.diagnostics.write_good,
     null_ls.builtins.code_actions.gitsigns,
 }
+
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
